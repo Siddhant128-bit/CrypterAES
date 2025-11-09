@@ -1,0 +1,65 @@
+#:kivy 2.3.0
+
+ScreenManager:
+    MainScreen:
+    EncryptScreen:
+    DecryptScreen:
+
+<MainScreen>:
+    name: "main"
+    BoxLayout:
+        orientation: "vertical"
+        spacing: 20
+        padding: 50
+        Button:
+            text: "Encrypt File"
+            font_size: 24
+            on_press: app.root.current = "encrypt"
+        Button:
+            text: "Decrypt File"
+            font_size: 24
+            on_press: app.root.current = "decrypt"
+
+<EncryptScreen>:
+    name: "encrypt"
+    BoxLayout:
+        orientation: "vertical"
+        spacing: 10
+        padding: 20
+        Label:
+            text: "Select a file to encrypt"
+        Button:
+            text: "Choose File"
+            on_press: app.select_file("encrypt")
+        TextInput:
+            id: password
+            hint_text: "Enter password"
+            password: True
+        Button:
+            text: "Encrypt"
+            on_press: app.encrypt_selected(password.text)
+        Label:
+            id: status
+            text: ""
+
+<DecryptScreen>:
+    name: "decrypt"
+    BoxLayout:
+        orientation: "vertical"
+        spacing: 10
+        padding: 20
+        Label:
+            text: "Select an encrypted file"
+        Button:
+            text: "Choose File"
+            on_press: app.select_file("decrypt")
+        TextInput:
+            id: password
+            hint_text: "Enter password"
+            password: True
+        Button:
+            text: "Decrypt"
+            on_press: app.decrypt_selected(password.text)
+        Label:
+            id: status
+            text: ""
