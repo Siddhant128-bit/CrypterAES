@@ -7,59 +7,130 @@ ScreenManager:
 
 <MainScreen>:
     name: "main"
-    BoxLayout:
-        orientation: "vertical"
-        spacing: 20
-        padding: 50
-        Button:
-            text: "Encrypt File"
-            font_size: 24
-            on_press: app.root.current = "encrypt"
-        Button:
-            text: "Decrypt File"
-            font_size: 24
-            on_press: app.root.current = "decrypt"
+    FloatLayout:
+        canvas.before:
+            Color:
+                rgba: 0.12, 0.12, 0.18, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        BoxLayout:
+            orientation: "vertical"
+            size_hint: 0.8, 0.5
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            spacing: 25
+            Button:
+                text: "Encrypt File"
+                font_size: 28
+                background_color: 0.2, 0.6, 0.86, 1
+                color: 1,1,1,1
+                background_normal: ''
+                on_press: app.root.current = "encrypt"
+            Button:
+                text: "Decrypt File"
+                font_size: 28
+                background_color: 0.9, 0.3, 0.3, 1
+                color: 1,1,1,1
+                background_normal: ''
+                on_press: app.root.current = "decrypt"
 
 <EncryptScreen>:
     name: "encrypt"
-    BoxLayout:
-        orientation: "vertical"
-        spacing: 10
-        padding: 20
-        Label:
-            text: "Select a file to encrypt"
-        Button:
-            text: "Choose File"
-            on_press: app.select_file("encrypt")
-        TextInput:
-            id: password
-            hint_text: "Enter password"
-            password: True
-        Button:
-            text: "Encrypt"
-            on_press: app.encrypt_selected(password.text)
-        Label:
-            id: status
-            text: ""
+    FloatLayout:
+        canvas.before:
+            Color:
+                rgba: 0.1, 0.1, 0.15, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        BoxLayout:
+            orientation: "vertical"
+            size_hint: 0.9, 0.8
+            pos_hint: {"center_x":0.5, "center_y":0.5}
+            spacing: 15
+            Label:
+                text: "Encrypt a file"
+                font_size: 26
+                color: 1,1,1,1
+            Button:
+                text: "Choose File"
+                font_size: 20
+                background_color: 0.2, 0.6, 0.86, 1
+                color: 1,1,1,1
+                background_normal: ''
+                on_press: app.select_file("encrypt")
+            Button:
+                text: "Encrypt"
+                font_size: 22
+                background_color: 0.1, 0.8, 0.3, 1
+                color: 1,1,1,1
+                background_normal: ''
+                on_press: app.encrypt_selected()
+            TextInput:
+                id: status
+                text: ""
+                font_size: 18
+                foreground_color: 1,1,1,1
+                background_color: 0,0,0,0
+                readonly: True
+                cursor_blink: False
+            Button:
+                text: "Back"
+                font_size: 18
+                size_hint_y: 0.15
+                background_color: 0.5,0.5,0.5,1
+                color: 1,1,1,1
+                background_normal: ''
+                on_press: app.root.current = "main"
 
 <DecryptScreen>:
     name: "decrypt"
-    BoxLayout:
-        orientation: "vertical"
-        spacing: 10
-        padding: 20
-        Label:
-            text: "Select an encrypted file"
-        Button:
-            text: "Choose File"
-            on_press: app.select_file("decrypt")
-        TextInput:
-            id: password
-            hint_text: "Enter password"
-            password: True
-        Button:
-            text: "Decrypt"
-            on_press: app.decrypt_selected(password.text)
-        Label:
-            id: status
-            text: ""
+    FloatLayout:
+        canvas.before:
+            Color:
+                rgba: 0.1, 0.1, 0.15, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        BoxLayout:
+            orientation: "vertical"
+            size_hint: 0.9, 0.8
+            pos_hint: {"center_x":0.5, "center_y":0.5}
+            spacing: 15
+            Label:
+                text: "Decrypt a file"
+                font_size: 26
+                color: 1,1,1,1
+            Button:
+                text: "Choose File"
+                font_size: 20
+                background_color: 0.9, 0.3, 0.3, 1
+                color: 1,1,1,1
+                background_normal: ''
+                on_press: app.select_file("decrypt")
+            TextInput:
+                id: password
+                hint_text: "Enter password"
+                password: True
+                font_size: 20
+                multiline: False
+            Button:
+                text: "Decrypt"
+                font_size: 22
+                background_color: 0.2, 0.6, 0.86, 1
+                color: 1,1,1,1
+                background_normal: ''
+                on_press: app.decrypt_selected(password.text)
+            Label:
+                id: status
+                text: ""
+                font_size: 18
+                color: 1,1,1,1
+            Button:
+                text: "Back"
+                font_size: 18
+                size_hint_y: 0.15
+                background_color: 0.5,0.5,0.5,1
+                color: 1,1,1,1
+                background_normal: ''
+                on_press: app.root.current = "main"
