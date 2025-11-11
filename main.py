@@ -10,7 +10,7 @@ import os
 import enc_dec
 # import aes_engine
 
-Window.size = (400, 600)
+# Window.size = (400, 600)
 
 class MainScreen(Screen):
     pass

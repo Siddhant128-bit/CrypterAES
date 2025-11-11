@@ -8,7 +8,7 @@ source.include_exts = py,png,jpg,kv,atlas
 requirements = python3,kivy,openssl,cryptography
 icon.filename = %(source.dir)s/CryptAES.jpg
 orientation = portrait
-fullscreen = 0
+fullscreen = 1
 
 # --- Android configuration ---
 p4a.bootstrap = sdl2
